@@ -1,0 +1,45 @@
+<form nz-form [nzLayout]="validateForm.get('formLayout')?.value" [formGroup]="validateForm" (ngSubmit)="doSubmit()">
+  <nz-form-item>
+    <nz-form-label [nzSpan]="isHorizontal ? 4 : null">Đơn vị VND</nz-form-label>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="isHorizontal ? 4 : null">Tiền vay</nz-form-label>
+    <nz-form-control [nzSpan]="isHorizontal ? 14 : null" nzErrorTip="Please input your loan">
+      <input nz-input formControlName="l" placeholder="Số tiền vay" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="isHorizontal ? 4 : null">Thời gian vay</nz-form-label>
+    <nz-form-control [nzSpan]="isHorizontal ? 14 : null" nzErrorTip="Please input your time loan">
+      <nz-select nz-select formControlName="n">
+        <nz-option nzLabel="3 tháng" nzValue="3"></nz-option>
+        <nz-option nzLabel="6 tháng" nzValue="6"></nz-option>
+        <nz-option nzLabel="12 tháng" nzValue="12"></nz-option>
+        <nz-option nzLabel="24 tháng" nzValue="24"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+      <h4>Lãi suất</h4>
+      <nz-table #middleTable nzSize="middle" [nzData]="data">
+        <thead>
+          <tr>
+            <th>Tháng</th>
+            <th>%</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of middleTable.data">
+            <td>{{ data.month }}</td>
+            <td>{{ data.percent }}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+      <button nz-button nzType="primary" routerLink="/emi/settlement">Settlement now!</button>
+    <nz-form-control [nzSpan]="isHorizontal ? 14 : null" [nzOffset]="isHorizontal ? 4 : null">
+        
+      <button nz-button nzType="primary">Submit</button>
+      
+    </nz-form-control>
+  </nz-form-item>
+</form>
